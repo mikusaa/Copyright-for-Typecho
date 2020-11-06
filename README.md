@@ -8,6 +8,6 @@
 |:---:|:---:|:----|:----|
 |headpic|字符|封面出处|封面出处的链接|
 
-![](image.png)
+![](https://raw.githubusercontent.com/mikusaa/Copyright-for-Typecho/dev/image.png)
 
 不填写该字段即可关闭。
