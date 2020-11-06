@@ -1,4 +1,4 @@
-# Copyright for Typecho
+# Copyright for Typecho 自用版
 
 这是一个 [Typecho](https://github.com/typecho/typecho) 插件，利用自定义字段功能灵活地在文章或独立页面尾部显示版权小尾巴。
 
@@ -46,6 +46,7 @@ mv Copyright-for-Typecho Copyright
 |author|字符|版权作者姓名|Yves X|
 |url|字符|原（本）文链接*|https://github.com/Yves-X/Copyright-for-Typecho|
 |notice|字符|版权声明|转载时须注明出处及本声明|
+|headpic|字符|封面出处|封面出处的链接|
 
 你可以把任意字段的值设定为**整数0**来关闭它。
 
