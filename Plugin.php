@@ -55,6 +55,8 @@ class Copyright_Plugin implements Typecho_Plugin_Interface {
         $form->addInput($author);
         $notice = new Typecho_Widget_Helper_Form_Element_Text('notice', NULL, _t('转载时须注明出处及本声明'), _t('声明'));
         $form->addInput($notice);
+        $headpic = new Typecho_Widget_Helper_Form_Element_Text('headpic', NULL, _t(''), _t('封面图'));
+        $form->addInput($headpic);
         $showURL = new Typecho_Widget_Helper_Form_Element_Checkbox('showURL', array(1 => _t('显示原（本）文链接')), NULL, NULL, NULL);
         $form->addInput($showURL);
         $showOnPost = new Typecho_Widget_Helper_Form_Element_Checkbox('showOnPost', array(1 => _t('在文章显示')), NULL, NULL, NULL);
@@ -89,29 +91,31 @@ class Copyright_Plugin implements Typecho_Plugin_Interface {
     }
 
     private static function globalCopyright($widget) {
-        $cr = array('show_on_post' => '', 'show_on_page' => '', 'show_url' => '', 'author' => '', 'url' => '', 'notice' => '');
+        $cr = array('show_on_post' => '', 'show_on_page' => '', 'show_url' => '', 'author' => '', 'url' => '', 'notice' => '', 'headpic' => '');
         $cr['show_on_post'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->showOnPost;
         $cr['show_on_page'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->showOnPage;
         $cr['show_url'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->showURL[0];
         $cr['author'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->author;
         $cr['url'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->url;
         $cr['notice'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->notice;
+        $cr['headpic'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->headpic;
         return $cr;
     }
 
     private static function localCopyright($widget) {
-        $cr = array('switch_on' => '', 'author' => '', 'url' => '', 'notice' => '');
+        $cr = array('switch_on' => '', 'author' => '', 'url' => '', 'notice' => '', 'headpic' => '');
         $cr['switch_on'] = $widget->fields->switch;
         $cr['author'] = $widget->fields->author;
         $cr['url'] = $widget->fields->url;
         $cr['notice'] = $widget->fields->notice;
+        $cr['headpic'] = $widget->fields->headpic;
         return $cr;
     }
 
     private static function apply($widget) {
         $gcr = self::globalCopyright($widget);
         $lcr = self::localCopyright($widget);
-        $cr = array('is_enable' => '', 'is_original' => '', 'author' => '', 'url' => '', 'notice' => '');
+        $cr = array('is_enable' => '', 'is_original' => '', 'author' => '', 'url' => '', 'notice' => '', 'headpic' => '');
         if ($widget->is('single')) {
             $cr['is_enable'] = 1;
         }
@@ -134,31 +138,36 @@ class Copyright_Plugin implements Typecho_Plugin_Interface {
         }
         $cr['author'] = $lcr['author'] != '' ? $lcr['author'] : $gcr['author'];
         $cr['notice'] = $lcr['notice'] != '' ? $lcr['notice'] : $gcr['notice'];
+        $cr['headpic'] = $lcr['headpic'] != '' ? $lcr['headpic'] : $gcr['headpic'];
         return $cr;
     }
 
     private static function render($cr) {
         $copyright_html = '';
         $t_author = '';
+        $t_headpic = '';
         $t_notice = '';
         $t_url = '';
         if ($cr['is_enable']) {
             if ($cr['author']) {
-                $t_author = '<p class="content-copyright">版权属于：' . $cr['author'] . '</p>';
+                $t_author = '<p class="content-copyright"><strong>本文作者：</strong>' . $cr['author'] . '</p>';
             }
             if ($cr['url']) {
                 if ($cr['is_original']) {
-                    $t_url = '<p class="content-copyright">本文链接：<a class="content-copyright" href="' . $cr['url'] . '">' . $cr['url'] . '</a></p>';
+                    $t_url = '<p class="content-copyright"><strong>本文链接：</strong><a class="content-copyright" href="' . $cr['url'] . '">' . $cr['url'] . '</a></p>';
                 } else {
-                    $t_url = '<p class="content-copyright">原文链接：<a class="content-copyright" target="_blank" href="' . $cr['url'] . '">' . $cr['url'] . '</a></p>';
+                    $t_url = '<p class="content-copyright"><strong>原文链接：</strong><a class="content-copyright" target="_blank" href="' . $cr['url'] . '">' . $cr['url'] . '</a></p>';
                 }
             }
-            if ($cr['notice']) {
-                $t_notice = '<p class="content-copyright">' . $cr['notice'] . '</p>';
+            if ($cr['headpic']) {
+                $t_headpic = '<p class="content-copyright"><strong>封面出处：</strong>' . $cr['headpic'] . '</p>';
             }
-            $copyright_html = '<hr class="content-copyright" style="margin-top:50px" /><blockquote class="content-copyright" style="font-style:normal">' . $t_author . $t_url . $t_notice . '</blockquote>';
+            if ($cr['notice']) {
+                $t_notice = '<p class="content-copyright"><strong>版权声明：</strong>' . $cr['notice'] . '</p>';
+            }
+            $copyright_html = '<hr class="content-copyright" style="margin-top:50px" /><blockquote class="content-copyright" style="font-style:normal;font-size: 95%;border-left: 4px solid #ff8080;margin: 50px -15px 0 -15px;padding: 1px 20px 1px 20px;">' . $t_author . $t_url . $t_headpic . $t_notice .'</blockquote>';
         }
         return $copyright_html;
     }
-
+    
 }
