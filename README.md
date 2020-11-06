@@ -6,7 +6,7 @@
 
 | 字段 |类型|说明|示例|
 |:---:|:---:|:----|:----|
-|headpic|字符|封面出处|封面出处的链接|
+|cover|字符|封面出处|封面出处的链接|
 
 ![](https://raw.githubusercontent.com/mikusaa/Copyright-for-Typecho/dev/image.png)
 
