@@ -89,31 +89,31 @@ class Copyright_Plugin implements Typecho_Plugin_Interface {
     }
 
     private static function globalCopyright($widget) {
-        $cr = array('show_on_post' => '', 'show_on_page' => '', 'show_url' => '', 'author' => '', 'url' => '', 'notice' => '', 'headpic' => '');
+        $cr = array('show_on_post' => '', 'show_on_page' => '', 'show_url' => '', 'author' => '', 'url' => '', 'notice' => '', 'cover' => '');
         $cr['show_on_post'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->showOnPost;
         $cr['show_on_page'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->showOnPage;
         $cr['show_url'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->showURL[0];
         $cr['author'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->author;
         $cr['url'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->url;
         $cr['notice'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->notice;
-        $cr['headpic'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->headpic;
+        $cr['cover'] = Typecho_Widget::widget('Widget_Options')->plugin('Copyright')->cover;
         return $cr;
     }
 
     private static function localCopyright($widget) {
-        $cr = array('switch_on' => '', 'author' => '', 'url' => '', 'notice' => '', 'headpic' => '');
+        $cr = array('switch_on' => '', 'author' => '', 'url' => '', 'notice' => '', 'cover' => '');
         $cr['switch_on'] = $widget->fields->switch;
         $cr['author'] = $widget->fields->author;
         $cr['url'] = $widget->fields->url;
         $cr['notice'] = $widget->fields->notice;
-        $cr['headpic'] = $widget->fields->headpic;
+        $cr['cover'] = $widget->fields->cover;
         return $cr;
     }
 
     private static function apply($widget) {
         $gcr = self::globalCopyright($widget);
         $lcr = self::localCopyright($widget);
-        $cr = array('is_enable' => '', 'is_original' => '', 'author' => '', 'url' => '', 'notice' => '', 'headpic' => '');
+        $cr = array('is_enable' => '', 'is_original' => '', 'author' => '', 'url' => '', 'notice' => '', 'cover' => '');
         if ($widget->is('single')) {
             $cr['is_enable'] = 1;
         }
@@ -136,14 +136,14 @@ class Copyright_Plugin implements Typecho_Plugin_Interface {
         }
         $cr['author'] = $lcr['author'] != '' ? $lcr['author'] : $gcr['author'];
         $cr['notice'] = $lcr['notice'] != '' ? $lcr['notice'] : $gcr['notice'];
-        $cr['headpic'] = $lcr['headpic'] != '' ? $lcr['headpic'] : $gcr['headpic'];
+        $cr['cover'] = $lcr['cover'] != '' ? $lcr['cover'] : $gcr['cover'];
         return $cr;
     }
 
     private static function render($cr) {
         $copyright_html = '';
         $t_author = '';
-        $t_headpic = '';
+        $t_cover = '';
         $t_notice = '';
         $t_url = '';
         if ($cr['is_enable']) {
@@ -157,13 +157,13 @@ class Copyright_Plugin implements Typecho_Plugin_Interface {
                     $t_url = '<p class="content-copyright"><strong>原文链接：</strong><a class="content-copyright" target="_blank" href="' . $cr['url'] . '">' . $cr['url'] . '</a></p>';
                 }
             }
-            if ($cr['headpic']) {
-                $t_headpic = '<p class="content-copyright"><strong>封面出处：</strong>' . $cr['headpic'] . '</p>';
+            if ($cr['cover']) {
+                $t_cover = '<p class="content-copyright"><strong>封面出处：</strong>' . $cr['cover'] . '</p>';
             }
             if ($cr['notice']) {
                 $t_notice = '<p class="content-copyright"><strong>版权声明：</strong>' . $cr['notice'] . '</p>';
             }
-            $copyright_html = '<hr class="content-copyright" style="margin-top:50px" /><blockquote class="content-copyright" style="font-style:normal;font-size: 95%;border-left: 4px solid #ff5268;margin: 50px -15px 0 -15px;padding: 1px 20px 1px 20px;">' . $t_author . $t_url . $t_headpic . $t_notice .'</blockquote>';
+            $copyright_html = '<hr class="content-copyright" style="margin-top:50px" /><blockquote class="content-copyright" style="font-style:normal;font-size: 95%;border-left: 4px solid #ff5268;margin: 50px -15px 0 -15px;padding: 1px 20px 1px 20px;">' . $t_author . $t_url . $t_cover . $t_notice .'</blockquote>';
         }
         return $copyright_html;
     }
