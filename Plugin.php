@@ -55,8 +55,6 @@ class Copyright_Plugin implements Typecho_Plugin_Interface {
         $form->addInput($author);
         $notice = new Typecho_Widget_Helper_Form_Element_Text('notice', NULL, _t('转载时须注明出处及本声明'), _t('声明'));
         $form->addInput($notice);
-        $headpic = new Typecho_Widget_Helper_Form_Element_Text('headpic', NULL, _t(''), _t('封面出处'));
-        $form->addInput($headpic);
         $showURL = new Typecho_Widget_Helper_Form_Element_Checkbox('showURL', array(1 => _t('显示原（本）文链接')), NULL, NULL, NULL);
         $form->addInput($showURL);
         $showOnPost = new Typecho_Widget_Helper_Form_Element_Checkbox('showOnPost', array(1 => _t('在文章显示')), NULL, NULL, NULL);
