@@ -2,12 +2,12 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 /**
- * Copyright for Typecho
+ * Copyright for Typecho 修改版
  *
  * @package Copyright
- * @author  Yves X
- * @version 1.0.4
- * @link https://github.com/Yves-X/Copyright-for-Typecho
+ * @author  mikusa
+ * @version 1.0.5
+ * @link https://github.com/mikusaa/Copyright-for-Typecho
  */
 
 class Copyright_Plugin implements Typecho_Plugin_Interface {
