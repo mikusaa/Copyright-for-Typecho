@@ -163,7 +163,7 @@ class Copyright_Plugin implements Typecho_Plugin_Interface {
             if ($cr['notice']) {
                 $t_notice = '<p class="content-copyright"><strong>版权声明：</strong>' . $cr['notice'] . '</p>';
             }
-            $copyright_html = '<hr class="content-copyright" style="margin-top:50px" /><blockquote class="content-copyright" style="font-style:normal;font-size: 95%;border-left: 4px solid #ff8080;margin: 50px -15px 0 -15px;padding: 1px 20px 1px 20px;">' . $t_author . $t_url . $t_headpic . $t_notice .'</blockquote>';
+            $copyright_html = '<hr class="content-copyright" style="margin-top:50px" /><blockquote class="content-copyright" style="font-style:normal;font-size: 95%;border-left: 4px solid #ff5268;margin: 50px -15px 0 -15px;padding: 1px 20px 1px 20px;">' . $t_author . $t_url . $t_headpic . $t_notice .'</blockquote>';
         }
         return $copyright_html;
     }
