@@ -1,6 +1,8 @@
 # Copyright for Typecho 自用版
 
-这是一个 [Typecho](https://github.com/typecho/typecho) 插件，利用自定义字段功能灵活地在文章或独立页面尾部显示版权小尾巴。具体设置请看[原始文档说明](https://github.com/Yves-X/Copyright-for-Typecho)。
+这是一个 [Typecho](https://github.com/typecho/typecho) 插件。具体设置请看[原始文档说明](https://github.com/Yves-X/Copyright-for-Typecho)。
+
+## 使用方法
 
 直接下载仓库后，重命名为`Copyright`
 
@@ -13,3 +15,6 @@
 ![](https://raw.githubusercontent.com/mikusaa/Copyright-for-Typecho/dev/image.png)
 
 不填写该字段即可关闭。
+
+PS：如果已存在`cover`字段，下载插件后将`Plugin.php`中所有的`cover`替换成你喜欢的字段，只要不重复就行了。
+
