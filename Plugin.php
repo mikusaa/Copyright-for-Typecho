@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * Copyright for Typecho 修改版
  *
  * @package Copyright
- * @author  mikusa
+ * @author  Yves X & mikusa
  * @version 1.0.5
  * @link https://github.com/mikusaa/Copyright-for-Typecho
  */
