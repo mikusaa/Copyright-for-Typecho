@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * Copyright for Typecho 修改版
  *
  * @package Copyright
- * @author  Yves X & mikusa
+ * @author  Yves X
  * @version 1.0.5
  * @link https://github.com/mikusaa/Copyright-for-Typecho
  */
@@ -41,7 +41,7 @@ class Copyright_Plugin implements Typecho_Plugin_Interface {
      * @return void
      */
     public static function config(Typecho_Widget_Helper_Form $form) {
-        echo '<p>欢迎使用 Typecho 版权插件。</p>';
+        echo '<p>欢迎使用 Typecho 版权插件，你正在使用的是增加了“<strong>封面来源</strong>”的修改版。（还有一些颜色上的修改）</p>';
         echo '<p>此插件帮助你设置文章与独立页面的版权声明，它会附在内容末尾。你也可以对特定某篇内容设置版权信息。</p>';
         echo '<p>版权信息借助插件与 Typecho 的自定义字段功能实现，只与插件或特定内容关联，而不会修改其内容本身，也不会在数据库中与文本混同。</p>';
         echo '<hr />';
